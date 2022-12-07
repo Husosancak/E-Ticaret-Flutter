@@ -1,3 +1,5 @@
+import 'package:emart_app/widgets_common/featured_buttons.dart';
+
 import '../../consts/consts.dart';
 import '../../consts/list.dart';
 import '../../widgets_common/home_buttons.dart';
@@ -116,9 +118,143 @@ class HomeScreen extends StatelessWidget {
                           .make(),
                     ),
                     20.heightBox,
-                    Row(
-                      children: List.generate(3, (index) => Column()).toList(),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                            3,
+                            (index) => Column(
+                                  children: [
+                                    featuredButtons(
+                                        icon: featuredImages1[index],
+                                        title: featuredTitles1[index]),
+                                    10.heightBox,
+                                    featuredButtons(
+                                        icon: featuredImages2[index],
+                                        title: featuredTitles2[index]),
+                                  ],
+                                )).toList(),
+                      ),
                     ),
+                    20.heightBox,
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: redColor,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          featuredProduct.text
+                              .fontFamily(bold)
+                              .size(18)
+                              .white
+                              .make(),
+                          10.heightBox,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(
+                                6,
+                                (index) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      imgP1,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    10.heightBox,
+                                    "Laptop "
+                                        .text
+                                        .fontFamily(semibold)
+                                        .color(darkFontGrey)
+                                        .make(),
+                                    10.heightBox,
+                                    "\$600"
+                                        .text
+                                        .color(redColor)
+                                        .fontFamily(bold)
+                                        .size(16)
+                                        .make(),
+                                  ],
+                                )
+                                    .box
+                                    .white
+                                    .roundedSM
+                                    .margin(const EdgeInsets.symmetric(
+                                        horizontal: 4))
+                                    .padding(const EdgeInsets.all(8))
+                                    .make(),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    20.heightBox,
+                    VxSwiper.builder(
+                      aspectRatio: 16 / 9,
+                      autoPlay: true,
+                      height: 150,
+                      enlargeCenterPage: true,
+                      itemCount: secondSlidersList.length,
+                      itemBuilder: (context, index) {
+                        return Image.asset(
+                          secondSlidersList[index],
+                          fit: BoxFit.fill,
+                        )
+                            .box
+                            .rounded
+                            .clip(Clip.antiAlias)
+                            .margin(const EdgeInsets.symmetric(horizontal: 8))
+                            .make();
+                      },
+                    ),
+                    20.heightBox,
+                    GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 6,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 8,
+                                crossAxisSpacing: 8,
+                                mainAxisExtent: 300),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                imgP5,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                              const Spacer(),
+                              "Laptop "
+                                  .text
+                                  .fontFamily(semibold)
+                                  .color(darkFontGrey)
+                                  .make(),
+                              10.heightBox,
+                              "\$600"
+                                  .text
+                                  .color(redColor)
+                                  .fontFamily(bold)
+                                  .size(16)
+                                  .make(),
+                            ],
+                          )
+                              .box
+                              .white
+                              .roundedSM
+                              .margin(const EdgeInsets.symmetric(horizontal: 4))
+                              .padding(const EdgeInsets.all(12))
+                              .make();
+                        })
                   ],
                 ),
               ),
